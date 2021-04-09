@@ -9,6 +9,10 @@ from logger import log_info, log_error
 
 
 def check_admin(from_id):
+    if config.controllers == [0]:
+        log_info("Request approved due to disabled admin list")
+        return True
+    
     if len(config.controllers) == 0:
         config.controllers.append(from_id)
         log_info('Added {} to admins due to empty list of admins'.format(from_id))
