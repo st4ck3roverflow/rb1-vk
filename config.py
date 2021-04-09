@@ -2,7 +2,7 @@ import os
 import utils
 import ast
 
-ver_msg = 'Raid bot community - v0.1 alpha - arturyudin.site - [club199568112|pwned solutions]'
+ver_msg = 'Raid bot community - v0.1 beta - arturyudin.site - [club199568112|pwned solutions]'
 
 isHerokuInstance = True
 
