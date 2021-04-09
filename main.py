@@ -55,7 +55,7 @@ class RaidBot:
                                                       random_id=get_random_id())
 
                             else:
-                                log_info("Request denied. {} isn't in admin list.")
+                                log_info("Request denied. {} isn't in admin list.".format(from_id))
                                 self.vk.messages.send(peer_id=peer_id, message="No access", random_id=get_random_id())
 
             if working:
