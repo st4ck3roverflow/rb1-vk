@@ -71,7 +71,7 @@ class RaidBot:
             message_text = event.object['message']['text']
             if event.type == VkBotEventType.MESSAGE_NEW:
                 if message_text == '':
-                    action_type = event.object['action']['type']
+                    action_type = event.object['message']['action']['type']
                     if action_type == 'chat_invite_user':
                         self.vk.messages.send(peer_id=peer_id, message=config.ver_msg, random_id=get_random_id())
                         log_info('Entered conversation')

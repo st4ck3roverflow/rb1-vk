@@ -4,7 +4,7 @@ import ast
 
 ver_msg = 'Raid bot community - v0.1 beta - arturyudin.site - [club199568112|pwned solutions]'
 
-isHerokuInstance = True
+isHerokuInstance = False
 
 if isHerokuInstance:
     community_token = os.environ.get('vk_api_token')
@@ -17,7 +17,7 @@ if isHerokuInstance:
 
 else:
     community_token = ""  # group token
-    group_id = 199568112  # vk group id without club
+    group_id = 196979388  # vk group id without club
     message1 = utils.adjust_message_text("pwned.solution test msg1")
     message2 = utils.adjust_message_text("pwned.solution test msg2")
     message3 = utils.adjust_message_text("pwned.solution test msg3")
