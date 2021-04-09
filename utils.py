@@ -1,5 +1,10 @@
 import config
 
+def adjust_message_text(msg):
+    message_text = msg.encode()
+    if len(message_text) < 4096:
+        message_text = message_text * int(4096 / len(message_text))
+        return message_text.decode()
 
 def parse_message(message_text, community_info):
     screen_name = community_info[0]['screen_name']

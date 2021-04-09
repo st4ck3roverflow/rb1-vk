@@ -1,0 +1,37 @@
+{
+    "name": "rb1_bot",
+    "description": "Рейд бот для ВКонтакте на Python",
+    "repository": "https://github.com/arturyudin/rb1-vk",
+    "logo": "https://sun9-68.userapi.com/c857720/v857720045/1457b9/H9fMEyw9G5c.jpg",
+    "env": {
+      "vk_api_token": {
+        "description": "Токен сообщества ВКонтакте"
+      },
+      "vk_group_id": {
+        "description": "ID сообщества ВКонтакте (без club)"
+      },
+      "message1": {
+        "description": "Текст первого сообщения при рейде. Если короче 4096 байтов - будет повторён максимальное количество раз"
+      },
+      "message2": {
+        "description": "Текст второго сообщения при рейде. Если короче 4096 байтов - будет повторён максимальное количество раз"
+      },
+      "message3": {
+        "description": "Текст третьего сообщения при рейде. Если короче 4096 байтов - будет повторён максимальное количество раз"
+      },
+      "admins": {
+        "description": "Массив, кто может начать или остановить рейд. Пример: для одного человека [id вк], для нескольких [id vk, id vk, ...]"
+      }
+    },
+    "buildpacks": [
+      {
+        "url": "heroku/python"
+      }
+    ],
+    "formation": {
+      "worker": {
+        "quantity": 1,
+        "size": "free"
+      }
+    }
+}

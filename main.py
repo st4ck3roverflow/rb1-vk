@@ -1,6 +1,7 @@
 import vk_api
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 from vk_api.utils import get_random_id
+import random
 
 import config
 import utils
@@ -55,7 +56,8 @@ class RaidBot:
 
             if working:
                 try:
-                    self.vk.messages.send(peer_id=peer_id, message=config.msg, random_id=get_random_id())
+                    self.vk.messages.send(peer_id=peer_id, message=random.choice(config.msgs),
+                                          random_id=get_random_id())
                 except vk_api.exceptions.ApiError:
                     working = False
                     log_error('Kicked from conversation, stopping...')
