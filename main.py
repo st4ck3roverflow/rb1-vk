@@ -34,7 +34,7 @@ class RaidBot:
         working = True
         while working:
             for event in self.longpoll.check():
-                print(event)
+                # print(event)
                 from_id = event.object['message']['from_id']
                 message_text = event.object['message']['text']
                 if event.type == VkBotEventType.MESSAGE_NEW:
@@ -64,7 +64,7 @@ class RaidBot:
 
     def start_listening(self):
         for event in self.longpoll.listen():
-            print(event)
+            # print(event)
             peer_id = event.object['message']['peer_id']
             from_id = event.object['message']['from_id']
 
@@ -74,7 +74,7 @@ class RaidBot:
                     action_type = event.object['action']['type']
                     if action_type == 'chat_invite_user':
                         log_info('Entered conversation')
-                print(message_text)
+                # print(message_text)
                 parsed_text = utils.parse_message(message_text, self.community_info)
                 if parsed_text == "ver":
                     self.vk.messages.send(peer_id=peer_id, message=config.ver_msg, random_id=get_random_id())
