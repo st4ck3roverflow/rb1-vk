@@ -1,5 +1,6 @@
 import os
 import utils
+import ast
 
 ver_msg = 'Raid bot community - v0.1 alpha - arturyudin.site - [club199568112|pwned solutions]'
 
@@ -12,7 +13,7 @@ if isHerokuInstance:
     message2 = utils.adjust_message_text(os.environ.get('message2'))
     message3 = utils.adjust_message_text(os.environ.get('message3'))
     msgs = [message1, message2, message3]
-    controllers = os.environ.get('admins')
+    controllers = ast.literal_eval(os.environ.get('admins'))
 
 else:
     community_token = "85f72365ea4c87422f30f995e7078efc179a99ffb7d3be96e081c09f683bd62ba4bc7adc32aa7da9caeaa"  # group token
