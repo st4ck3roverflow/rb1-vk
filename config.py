@@ -4,7 +4,7 @@ import ast
 
 ver_msg = 'Raid bot community - v0.1 beta - arturyudin.site - [club199568112|pwned solutions]'
 
-isHerokuInstance = False
+isHerokuInstance = True
 
 if isHerokuInstance:
     community_token = os.environ.get('vk_api_token')
