@@ -7,5 +7,5 @@ VK raid bot that sends many messages from the community
 # Heroku deploy button
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/arturyudin/rb1-vk)
 # Links
-Me - https://arturyudin.site/itsme <br>
+Me - https://arturyud.in/itsme <br>
 YouGame thread - https://yougame.biz/threads/197193/
