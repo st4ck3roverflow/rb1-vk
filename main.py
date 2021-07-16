@@ -5,8 +5,9 @@ import random
 
 import config
 import utils
+import keyboard_gen
 from logger import log_info, log_error
-
+import time
 
 def check_admin(from_id):
     if config.controllers == [0]:
@@ -43,25 +44,26 @@ class RaidBot:
                 message_text = event.object['message']['text']
                 if event.type == VkBotEventType.MESSAGE_NEW:
                     parsed_text = utils.parse_message(message_text, self.community_info)
-                    if from_id in controllers:
-                        if parsed_text == "stopRaid":
-                            log_info('{} requested raid stop'.format(from_id))
-                            admin_check_answer = check_admin(from_id)
-                            if admin_check_answer:
-                                config.controllers.append(from_id)
-                                log_info('Request approved. Starting raid.')
-                                working = False
-                                self.vk.messages.send(peer_id=peer_id, message="Raid is stopped",
-                                                      random_id=get_random_id())
+                    if parsed_text == "stopRaid":
+                        log_info('{} requested raid stop'.format(from_id))
+                        admin_check_answer = check_admin(from_id)
+                        if admin_check_answer:
+                            log_info('Request approved. Starting raid.')
+                            working = False
+                            self.vk.messages.send(peer_id=peer_id, message="Raid is stopped",
+                                                  random_id=get_random_id(), keyboard=keyboard_gen.gen("startRaid"))
 
-                            else:
-                                log_info("Request denied. {} isn't in admin list.".format(from_id))
-                                self.vk.messages.send(peer_id=peer_id, message="No access", random_id=get_random_id())
+                        else:
+                            log_info("Request denied. {} isn't in admin list.".format(from_id))
+                            self.vk.messages.send(peer_id=peer_id, message="No access. Sosi xyi nishiy nn.", random_id=get_random_id())
 
             if working:
                 try:
                     self.vk.messages.send(peer_id=peer_id, message=random.choice(config.msgs),
-                                          random_id=get_random_id())
+                                          random_id=get_random_id(),
+                                          attachment="wall-199568112_16",
+                                          keyboard=keyboard_gen.gen("arturyud.in vto.pe"))
+                    time.sleep(config.message_delay)
                 except vk_api.exceptions.ApiError:
                     working = False
                     log_error('Kicked from conversation, stopping...')
@@ -77,23 +79,22 @@ class RaidBot:
                 if message_text == '':
                     action_type = event.object['message']['action']['type']
                     if action_type == 'chat_invite_user':
-                        self.vk.messages.send(peer_id=peer_id, message=config.ver_msg, random_id=get_random_id())
+                        self.vk.messages.send(peer_id=peer_id,
+                                              message=config.ver_msg+"\nTo start raid admin must click any button below!",
+                                              random_id=get_random_id(),
+                                              keyboard=keyboard_gen.gen("startRaid"))
                         log_info('Entered conversation')
-                # print(message_text)
                 parsed_text = utils.parse_message(message_text, self.community_info)
                 if parsed_text == "ver":
                     self.vk.messages.send(peer_id=peer_id, message=config.ver_msg, random_id=get_random_id())
                 if parsed_text == "startRaid":
                     log_info('{} requested raid start.'.format(from_id))
-                    admin_check_answer = check_admin(from_id)
-                    if admin_check_answer:
-                        config.controllers.append(from_id)
+                    if check_admin(from_id):
                         log_info('Request approved. Starting raid.')
                         self.start_raid(peer_id=peer_id, controllers=config.controllers)
-
                     else:
                         log_info("Request denied. {} isn't in admin list.")
-                        self.vk.messages.send(peer_id=peer_id, message="No access", random_id=get_random_id())
+                        self.vk.messages.send(peer_id=peer_id, message="No access. Sosi xyi nishiy nn.", random_id=get_random_id())
 
 
 if __name__ == "__main__":

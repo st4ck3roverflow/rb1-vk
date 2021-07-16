@@ -21,3 +21,4 @@ def parse_message(message_text, community_info):
         return splited_message[1]
     else:
         return False
+

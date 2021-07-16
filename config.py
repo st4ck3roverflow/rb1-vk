@@ -2,9 +2,10 @@ import os
 import utils
 import ast
 
-ver_msg = 'Raid bot community - v0.1 beta - arturyudin.site - [club199568112|pwned solutions]'
+ver_msg = 'Raid bot community - v0.2 - https://arturyud.in/ - [club199568112|pwned solutions]'
 
 isHerokuInstance = True
+message_delay = 0.3
 
 if isHerokuInstance:
     community_token = os.environ.get('vk_api_token')
@@ -16,7 +17,7 @@ if isHerokuInstance:
     controllers = ast.literal_eval(os.environ.get('admins'))
 
 else:
-    community_token = ""  # group token
+    community_token = "xyi"  # group token
     group_id = 196979388  # vk group id without club
     message1 = utils.adjust_message_text("pwned.solution test msg1")
     message2 = utils.adjust_message_text("pwned.solution test msg2")
